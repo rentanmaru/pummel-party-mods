@@ -1,0 +1,7 @@
+{
+  "name": "MinigameVariety",
+  "version_number": "0.1.0",
+  "website_url": "",
+  "description": "Host-only. Prefers minigames you haven't played recently, so each game feels fresh. Clients don't need it. Check the priority with /mv rank in chat or the F8 key.",
+  "dependencies": []
+}

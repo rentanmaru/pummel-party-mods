@@ -6,6 +6,7 @@ Pummel Party（Steam AppID 880940）用の BepInEx 5 コードModです。
 | Mod | 内容 |
 |---|---|
 | [PummelHello](src/PummelHello) | 動作確認用。Modded表示、ターン・ミニゲームのログ出力（挙動は変えない） |
+| [MinigameVariety](src/MinigameVariety) | **ホストだけ導入**。人数に合い、最近遊んでいないミニゲームを優先して候補に入れる。チャットの `/mv rank`・`/mv pool` や F8 キーで優先順位を確認できる |
 
 ## 開発環境の準備
 1. .NET SDK（8以降）を入れる
@@ -20,9 +21,14 @@ dotnet build PummelMods.sln -c Release
 
 ## 配布用zipの作成
 ```bash
-powershell -ExecutionPolicy Bypass -File tools/package.ps1 -Project PummelHello
+powershell -ExecutionPolicy Bypass -File tools/package.ps1 -Project MinigameVariety
 ```
-`dist\PummelHello-<version>.zip` ができます（Thunderstore形式）。
+`dist\<Mod名>-<version>.zip` ができます（Thunderstore形式）。`-Project` にMod名を指定します。
+
+## 新しいModの追加
+1. `src/<Mod名>/<Mod名>.csproj` を作る（中身は `AssemblyName`・`RootNamespace`・`Version` だけ。参照はルートの `Directory.Build.props` で共通化済み）
+2. `dotnet sln PummelMods.sln add src/<Mod名>/<Mod名>.csproj`
+3. `thunderstore/<Mod名>/` に manifest.json・icon.png（256x256）・README.md・CHANGELOG.md を置く
 
 ## フォルダ構成
 | 場所 | 内容 |

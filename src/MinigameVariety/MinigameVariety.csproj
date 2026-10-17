@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 参照とゲームへのコピーはルートの Directory.Build.props / .targets で共通化 -->
+  <PropertyGroup>
+    <AssemblyName>MinigameVariety</AssemblyName>
+    <RootNamespace>MinigameVariety</RootNamespace>
+    <!-- thunderstore/MinigameVariety/manifest.json の version_number と合わせる -->
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+</Project>
