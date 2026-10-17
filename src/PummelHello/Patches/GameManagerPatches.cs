@@ -12,7 +12,8 @@ namespace PummelHello.Patches
         private static void LoadMinigamePrefix(MinigameDefinition minigame, int alternateIndex)
         {
             string name = minigame != null ? minigame.minigameName : "(null)";
-            Plugin.Log.LogInfo($"ミニゲーム読み込み: {name}（ID {minigame?.minigameID}、バリエーション {alternateIndex}）");
+            // MinigameID はワークショップ製ならワークショップのID、それ以外は内部ID
+            Plugin.Log.LogInfo($"ミニゲーム読み込み: {name}（ID {minigame?.MinigameID}、バリエーション {alternateIndex}）");
         }
     }
 }

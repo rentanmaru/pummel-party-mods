@@ -1,38 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- 参照とゲームへのコピーはルートの Directory.Build.props / .targets で共通化 -->
   <PropertyGroup>
     <AssemblyName>PummelHello</AssemblyName>
     <RootNamespace>PummelHello</RootNamespace>
     <!-- thunderstore/PummelHello/manifest.json の version_number と合わせる -->
     <Version>0.1.0</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <!-- ゲームの非公開メンバーをビルド時だけ参照できるようにする（実行時には不要） -->
-    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- BepInEx本体（ゲームフォルダに導入したものを参照。出力にはコピーしない） -->
-    <Reference Include="BepInEx" HintPath="$(BepInExDir)\core\BepInEx.dll" Private="false" />
-    <Reference Include="0Harmony" HintPath="$(BepInExDir)\core\0Harmony.dll" Private="false" />
-
-    <!-- ゲーム本体のコード -->
-    <Reference Include="Assembly-CSharp" HintPath="$(ManagedDir)\Assembly-CSharp.dll" Private="false" Publicize="true" />
-
-    <!-- Unityのモジュール（ゲームに同梱されているものをそのまま使う） -->
-    <Reference Include="UnityEngine" HintPath="$(ManagedDir)\UnityEngine.dll" Private="false" />
-    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedDir)\UnityEngine.CoreModule.dll" Private="false" />
-    <Reference Include="UnityEngine.IMGUIModule" HintPath="$(ManagedDir)\UnityEngine.IMGUIModule.dll" Private="false" />
-  </ItemGroup>
-
-  <!-- ビルド後、ゲームの BepInEx\plugins\PummelHello へ自動コピー -->
-  <Target Name="CopyToGame" AfterTargets="Build" Condition="Exists('$(BepInExDir)')">
-    <MakeDir Directories="$(BepInExDir)\plugins\$(AssemblyName)" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(BepInExDir)\plugins\$(AssemblyName)" />
-    <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(BepInExDir)\plugins\$(AssemblyName)"
-          Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
-    <Message Importance="high" Text="ゲームへコピーしました: $(BepInExDir)\plugins\$(AssemblyName)" />
-  </Target>
 
 </Project>

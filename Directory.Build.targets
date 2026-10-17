@@ -1,0 +1,10 @@
+<Project>
+  <!-- ビルド後、ゲームの BepInEx\plugins\<Mod名> へ自動コピー（全Mod共通） -->
+  <Target Name="CopyToGame" AfterTargets="Build" Condition="Exists('$(BepInExDir)')">
+    <MakeDir Directories="$(BepInExDir)\plugins\$(AssemblyName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(BepInExDir)\plugins\$(AssemblyName)" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(BepInExDir)\plugins\$(AssemblyName)"
+          Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+    <Message Importance="high" Text="ゲームへコピーしました: $(BepInExDir)\plugins\$(AssemblyName)" />
+  </Target>
+</Project>
