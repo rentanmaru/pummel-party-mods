@@ -1,7 +1,7 @@
 {
   "name": "PummelHello",
   "version_number": "0.1.0",
-  "website_url": "",
+  "website_url": "https://github.com/rentanmaru/pummel-party-mods",
   "description": "Test plugin for Pummel Party modding. Shows a 'Modded' label and logs turns and minigames.",
   "dependencies": []
 }

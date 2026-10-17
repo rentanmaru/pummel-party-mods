@@ -1,12 +1,28 @@
 # Pummel Party Mods
 
 Pummel Party（Steam AppID 880940）用の BepInEx 5 コードModです。
+BepInEx 5 code mods for Pummel Party.
+
+> 非公式のファンメイドModです。Rebuilt Games とは関係ありません。
+> This is an unofficial fan-made mod, not affiliated with Rebuilt Games.
 
 ## 収録Mod
 | Mod | 内容 |
 |---|---|
-| [PummelHello](src/PummelHello) | 動作確認用。Modded表示、ターン・ミニゲームのログ出力（挙動は変えない） |
-| [MinigameVariety](src/MinigameVariety) | **ホストだけ導入**。人数に合い、最近遊んでいないミニゲームを優先して候補に入れる。チャットの `/mv rank`・`/mv pool` や F8 キーで優先順位を確認できる |
+| [MinigameVariety](thunderstore/MinigameVariety/README.md) | **ホストだけ導入**。人数に合い、最近遊んでいないミニゲームを優先して候補に入れる。チャットの `/mv rank`・`/mv pool` や F8 キーで優先順位を確認できる |
+| [PummelHello](src/PummelHello) | 開発者向けの動作確認用。Modded表示、ターン・ミニゲームのログ出力（挙動は変えない） |
+
+## 遊ぶ人向け：導入方法
+1. **BepInEx 5 を入れる**
+   - [BepInEx の Releases](https://github.com/BepInEx/BepInEx/releases) から 5.4.x の `BepInEx_win_x64_5.4.x.zip` をダウンロード
+   - Steam のライブラリで Pummel Party を右クリック →「管理」→「ローカルファイルを閲覧」でゲームフォルダを開く
+   - zip の中身をゲームフォルダにそのまま展開し、ゲームを1回起動する
+2. **Mod を入れる**
+   - [このリポジトリの Releases](https://github.com/rentanmaru/pummel-party-mods/releases) から Mod の zip をダウンロード
+   - zip の中の `BepInEx` フォルダを、ゲームフォルダに上書きコピーする
+3. **外すとき**
+   - Mod だけ外す：`BepInEx\plugins\<Mod名>` フォルダを消す
+   - BepInEx ごと外す：ゲームフォルダの `winhttp.dll` を消す
 
 ## 開発環境の準備
 1. .NET SDK（8以降）を入れる
@@ -41,3 +57,6 @@ powershell -ExecutionPolicy Bypass -File tools/package.ps1 -Project MinigameVari
 ## 注意
 - ゲームのDLLやアセットはリポジトリに含めません（再配布になるため）
 - 挙動を変えるModは、フレンドとのプライベートロビーやローカルプレイで使ってください
+
+## ライセンス
+[MIT](LICENSE)

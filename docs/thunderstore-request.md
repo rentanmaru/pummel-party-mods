@@ -22,7 +22,7 @@
 | Data folder | `PummelParty_Data` |
 | Engine | Unity 2021.3.45f2 (Mono) |
 | Mod loader | BepInEx 5 (x64) |
-| Existing mods | （GitHubのリンクをここに） |
+| Existing mods | https://github.com/rentanmaru/pummel-party-mods |
 
 ## 投稿文の下書き（英語）
 > **Pummel Party** (Steam AppID 880940)
