@@ -22,7 +22,7 @@ Results are shown only on your screen. Nothing is sent to other players.
 結果は自分の画面にだけ表示され、他の人には送られません。
 
 ### Chat commands / チャットコマンド（online lobbies only / オンラインのロビーのみ）
-| Command | Description |
+| Command / コマンド | Description / 内容 |
 |---|---|
 | `/mv rank [page]` | Priority of all enabled minigames / 有効なミニゲームの優先順位 |
 | `/mv pool [page]` | Minigames picked for this game / 今回のゲームの候補 |
@@ -38,7 +38,7 @@ F8 を押すたびに「優先順位 → 今回の候補 → 閉じる」と切�
 ### How to read / 見かた
 - `★` = picked for this game / 今回の候補に入っている
 - `未プレイ` = never played / まだ遊んでいない
-- `N個前に遊んだ` = played N minigames ago / N個前に遊んだ
+- `N個前に遊んだ` = played N minigames ago / N個前に遊んだ（1個前 = いちばん最近）
 - `人数NG` = doesn't fit the current player count / 今の人数では遊べない
 
 ## Install / 導入方法
@@ -49,7 +49,7 @@ F8 を押すたびに「優先順位 → 今回の候補 → 閉じる」と切�
 
 ## Config / 設定
 `BepInEx/config/com.renta.minigamevariety.cfg`
-| Key | Default | Description |
+| Key / 項目 | Default / 初期値 | Description / 内容 |
 |---|---|---|
 | `Enabled` | true | Turn the mod on/off / Modのオン・オフ |
 | `ResetHistory` | false | Set to true to clear the history on next launch / true で次の起動時に記録を消す |
