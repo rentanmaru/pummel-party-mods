@@ -1,0 +1,18 @@
+# ビルド成果物
+bin/
+obj/
+dist/
+
+# IDE
+.vs/
+.idea/
+*.user
+*.suo
+
+# PCごとの設定（ゲームの場所）
+GamePath.user.props
+
+# ゲームのDLL・逆コンパイル結果は再配布になるので絶対に入れない
+*.dll
+*.pdb
+decompiled/

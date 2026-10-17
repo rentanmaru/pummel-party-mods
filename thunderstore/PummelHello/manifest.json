@@ -1,0 +1,7 @@
+{
+  "name": "PummelHello",
+  "version_number": "0.1.0",
+  "website_url": "",
+  "description": "Test plugin for Pummel Party modding. Shows a 'Modded' label and logs turns and minigames.",
+  "dependencies": []
+}
