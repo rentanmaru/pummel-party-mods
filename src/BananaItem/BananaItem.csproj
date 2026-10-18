@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 参照とゲームへのコピーはルートの Directory.Build.props / .targets で共通化 -->
+  <PropertyGroup>
+    <AssemblyName>BananaItem</AssemblyName>
+    <RootNamespace>BananaItem</RootNamespace>
+    <!-- thunderstore/BananaItem/manifest.json の version_number と合わせる -->
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 全員導入チェックで Steam のロビーデータを使う -->
+    <Reference Include="com.rlabrecque.steamworks.net" HintPath="$(ManagedDir)\com.rlabrecque.steamworks.net.dll" Private="false" />
+    <!-- AudioSystem.PlayOneShot の別の引数の形が AudioRolloffMode を使うため -->
+    <Reference Include="UnityEngine.AudioModule" HintPath="$(ManagedDir)\UnityEngine.AudioModule.dll" Private="false" />
+    <!-- NetPrefab が Addressables の AsyncOperationHandle を持つため -->
+    <Reference Include="Unity.ResourceManager" HintPath="$(ManagedDir)\Unity.ResourceManager.dll" Private="false" />
+  </ItemGroup>
+
+</Project>
