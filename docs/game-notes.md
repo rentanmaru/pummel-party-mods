@@ -110,5 +110,21 @@
 - [ ] `GameManager.LocalPlayedMinigameList`（遊んだミニゲームの一覧？）の使われ方を確認 → 履歴表示に使えるかも
 - [ ] UnityExplorer で実行中の値を確認（必要になったら）
 
+## アイテム追加（BananaItem）で分かったこと
+| 仕組み | 内容 |
+|---|---|
+| 定義と登録 | `ItemDetails` を `ScriptableObject.CreateInstance` で作り `GameManager.AddItem`。`OnAddItem` → `RulesetGroupItems.Setup()` でルールセットに「有効」で入り、アイテム設定画面にも出る。**`OnAddItem` が空だと `AddItem` が落ちる**ので空の処理を足しておく |
+| アイテムID | **`ActionEquipItem` はIDを byte で送る**（`GameBoardController` 2905行目で `(byte)itemID`）→ 256以上のIDは別アイテムと取り違える。0〜255の空き番号を使う（BananaItem は 250） |
+| 有効アイテムの番号 | `ItemList.Setup()`（ボード開始時）が `GetIsActive()` で絞って `itemID` 順に並べ、`itemIndex` を振る。持ち物 `inventory` は64枠 |
+| ネット用コンポーネント | 公式Mod用の `MOD_Item`（`MOD_OnSetup/OnUse/OnUnEquip` の空フック）を使えば、新しいネット型番号（`ParseTypes`）が要らない |
+| ネット用プレハブ | 生成は名前→番号（`net_prefab_list`）。**番号がずれると他のプレハブも壊れる**ので最後尾に登録。`WorkshopController.SetupNetPrefabs` が実行時プレハブを消して登録し直すので、その後にも登録し直す。`GetNetPrefab` に割り込んで自前のテンプレートを返す |
+| テンプレート | 非表示の親の下に置くと、テンプレート自体は動かず、`Instantiate` したもの（親なし）は表示される |
+| 使う処理 | `Item.Use(seed)` は `RPCUse` で全員の端末で呼ばれる → 置く処理をここに入れれば全員同じ結果 |
+| 止まった | サーバーが `ActionDoNodeEvent` を送り、全員で `BoardNode.PerformOnLandEvent`。このコルーチンを包めば割り込める |
+| ダメージ | `BoardPlayer.ApplyDamage(DamageInstance)` を全員の端末で呼ぶ（ダメージマスと同じ）。`ragdoll = true` で転ぶ |
+| 手に持つ大きさ | `heldScale` の初期値 100 では大きすぎた。親（手の骨）の `lossyScale` から逆算して見た目の大きさをそろえる |
+| ラウンド | `GameBoardController.CurTurnNum`。`PlayTurns` に切り替わるたび全員で +1 |
+| 全員導入チェック | `GameManager.CurrentLobby` ＋ `SteamMatchmaking` のメンバーデータ／ロビーデータ |
+
 ## トラブル時のメモ
 - `OnGUI` の表示が出ない場合：BepInEx の管理オブジェクトがシーン切り替えで消されている可能性。`BepInEx\config\BepInEx.cfg` の `[Chainloader] HideManagerGameObject = true` を試す

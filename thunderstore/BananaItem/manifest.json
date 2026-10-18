@@ -1,0 +1,7 @@
+{
+  "name": "BananaItem",
+  "version_number": "0.1.0",
+  "website_url": "https://github.com/rentanmaru/pummel-party-mods",
+  "description": "Adds a new board item: Banana. Drop it on your space; the next other player who stops there takes 15 damage. Everyone in the lobby needs it.",
+  "dependencies": []
+}

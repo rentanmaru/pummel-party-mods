@@ -12,6 +12,7 @@ BepInEx 5 code mods for Pummel Party (Steam AppID 880940).
 | Mod | 内容 / Description |
 |---|---|
 | [MinigameVariety](thunderstore/MinigameVariety/README.md) | **ホストだけ導入**。人数に合い、最近遊んでいないミニゲームを優先して候補に入れる。チャットの `/mv rank`・`/mv pool` や F8 キーで優先順位を確認できる<br><br>**Host-only.** Prefers minigames that fit the player count and haven't been played recently. Check the priority with `/mv rank` / `/mv pool` in chat or the F8 key |
+| [BananaItem](thunderstore/BananaItem/README.md) | **全員導入が必要**。新アイテム「バナナ」を追加。使ったマスに置き、2ラウンドの間、止まった他のプレイヤーに15ダメージ<br><br>**Everyone needs it.** Adds a new item, Banana. Drop it on your space; for 2 rounds the next other player who stops there takes 15 damage |
 | [PummelHello](thunderstore/PummelHello/README.md) | 開発者向けの動作確認用。Modded表示、ターン・ミニゲームのログ出力（挙動は変えない）<br><br>A test plugin for developers. Shows a "Modded" label and logs turns and minigames (does not change gameplay) |
 
 ダウンロードは [Releases](https://github.com/rentanmaru/pummel-party-mods/releases) から。
