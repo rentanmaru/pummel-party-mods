@@ -13,7 +13,7 @@ namespace BananaItem
     {
         public const string Guid = "com.renta.bananaitem";
         public const string Name = "BananaItem";
-        public const string Version = "0.1.0";
+        public const string Version = "0.2.0";
     }
 
     // 新しいアイテム「バナナ」を追加するMod（全員導入が必要）
@@ -23,6 +23,7 @@ namespace BananaItem
         internal static ManualLogSource Log;
         internal static ConfigEntry<KeyboardShortcut> DebugGiveKey;
         internal static ConfigEntry<KeyboardShortcut> DebugFillKey;
+        internal static ConfigEntry<KeyboardShortcut> DebugRewardKey;
 
         private Harmony _harmony;
         private GameObject _runnerObject;
@@ -42,6 +43,11 @@ namespace BananaItem
                 "DebugFillKey",
                 new KeyboardShortcut(KeyCode.F10, KeyCode.LeftControl),
                 "Key to put bananas on every space for testing (local play only). / テスト用に全マスにバナナを置くキー（ローカルプレイのみ）");
+            DebugRewardKey = Config.Bind(
+                "Debug",
+                "DebugRewardKey",
+                new KeyboardShortcut(KeyCode.F10, KeyCode.LeftShift),
+                "Key to toggle 'every minigame item reward is a banana' for testing (local play only). / テスト用に、ミニゲームのアイテム報酬を全部バナナにする切り替えキー（ローカルプレイのみ）");
 
             _harmony = new Harmony(MyPluginInfo.Guid);
             try

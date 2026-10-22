@@ -7,8 +7,13 @@ namespace BananaItem
     // バナナの数値（全員で同じ値でないとズレるので固定）
     internal static class BananaRules
     {
-        public const int Damage = 15;
+        // 踏んだときのダメージ（最小〜最大のどれか。全員で同じ値になるよう、バナナごとのシードで決める）
+        public const int MinDamage = 7;
+        public const int MaxDamage = 9;
         public const int DurationRounds = 2;
+
+        // ミニゲーム報酬の表に入れるときの重み（2位・3位の表の合計は 75〜110 なので、およそ 12〜17%）
+        public const int RewardWeight = 15;
     }
 
     // 名前・説明（言語に合わせて切り替える）
@@ -26,8 +31,8 @@ namespace BananaItem
         public static string Name => IsJapanese ? "バナナ" : "Banana";
 
         public static string Description => IsJapanese
-            ? $"使ったマスにバナナを置く。{BananaRules.DurationRounds}ラウンドの間、そのマスに止まった他のプレイヤーは{BananaRules.Damage}ダメージ（1回で消える）。"
-            : $"Drops a banana on your space. For {BananaRules.DurationRounds} rounds, the next other player who stops there takes {BananaRules.Damage} damage.";
+            ? $"使ったマスにバナナを置く。{BananaRules.DurationRounds}ラウンドの間、そのマスを通過したり止まったりした他のプレイヤーは{BananaRules.MinDamage}〜{BananaRules.MaxDamage}ダメージ（1回で消える）。"
+            : $"Drops a banana on your space. For {BananaRules.DurationRounds} rounds, the next other player who passes or stops there takes {BananaRules.MinDamage}-{BananaRules.MaxDamage} damage.";
     }
 
     // アイテム定義（ItemDetails）とネット用テンプレートを作って、ゲームに登録する

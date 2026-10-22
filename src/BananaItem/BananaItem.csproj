@@ -5,7 +5,7 @@
     <AssemblyName>BananaItem</AssemblyName>
     <RootNamespace>BananaItem</RootNamespace>
     <!-- thunderstore/BananaItem/manifest.json の version_number と合わせる -->
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

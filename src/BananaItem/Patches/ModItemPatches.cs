@@ -51,22 +51,23 @@ namespace BananaItem.Patches
         // 使ったとき（全員の端末で呼ばれる）：今いるマスにバナナを置いて終わる
         [HarmonyPostfix]
         [HarmonyPatch(nameof(MOD_Item.MOD_OnUse))]
-        private static void OnUsePostfix(MOD_Item __instance)
+        private static void OnUsePostfix(MOD_Item __instance, int seed)
         {
             if (BananaDefinition.IsBanana(__instance.details))
             {
-                __instance.StartCoroutine(UseBanana(__instance));
+                __instance.StartCoroutine(UseBanana(__instance, seed));
             }
         }
 
-        private static IEnumerator UseBanana(MOD_Item item)
+        // seed は使った人から全員に配られた値（RPCUse）なので、バナナのダメージ量を全員で同じにできる
+        private static IEnumerator UseBanana(MOD_Item item, int seed)
         {
             BoardPlayer owner = item.player.BoardObject;
             owner.PlayerAnimation.CarryingSide = 0;
             owner.PlayerAnimation.Carrying = false;
             yield return new WaitForSeconds(0.2f);
 
-            BananaField.Place(owner.CurrentNode, item.player);
+            BananaField.Place(owner.CurrentNode, item.player, seed);
             AudioSystem.PlayOneShot("MultimediaButtonClick007_STD_ZapSplat", 0.5f);
             yield return new WaitForSeconds(0.5f);
 
